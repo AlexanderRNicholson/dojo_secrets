@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Dojo Secrets</title>
+  </head>
+  <body>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+    <h1>Register</h1>
+    <form action="/register" method="POST">
+      {% csrf_token %}
+      <input label="First name:" type="text" name="first_name">
+      <input label="Last name:" type="text" name="last_name">
+      <input label="E-mail:" type="text" name="email">
+      <input label="Password:" type="password" name="password">
+      <input label="Confirm PW:" type="password" name="password_conf">
+      <input type="submit" name="Register">
+    </form>
+
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      {% csrf_token %}
+      <input label="E-mail:" type="text" name="email">
+      <input label="Password:" type="password" name="password">
+      <input type="submit" name="Login">
+    </form>
+  </body>
+</html>

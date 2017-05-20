@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Dojo Secrets</title>
+  </head>
+  <body>
+    <a href="/secrets">Back</a>
+    <h1>Most Popular Secrets...</h1>
+    {% for secret in secrets %}
+    <p>{{ secret.content }}
+      {{ secret.created_at }}
+      {{ secret.likes.count }} {% if secret.likes.count == 1 %} like {% else %} likes {% endif %}
+      {% if secret.user_id.id == logged_in_user.id %}
+        You posted this. <a href="/delete/{{secret.id}}">Delete</a>
+        {% endif %}
+      {%if secret.user_id.id != logged_in_user.id %}
+        {% if secret.liked_by_user %}
+        You liked this.
+        {% else %}
+          <a href="/like/{{secret.id}}">Like</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </p>
+  </body>
+</html>
